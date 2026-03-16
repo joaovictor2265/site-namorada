@@ -270,7 +270,6 @@
             notice.hidden = false;
         };
 
-        let brokenCount = 0;
         const hasWebp = Array.from(images).some((img) =>
             String(img.getAttribute("src") || "").toLowerCase().endsWith(".webp")
         );
@@ -287,23 +286,33 @@
                 const caption = figure.querySelector("figcaption");
 
                 if (caption && !caption.dataset.fallbackApplied) {
-                    const src = img.getAttribute("src") || "";
+                    const src = img.currentSrc || img.getAttribute("src") || "";
                     caption.textContent = src
-                        ? `${caption.textContent} (não consegui carregar: ${src})`
+                        ? `${caption.textContent} (nao consegui carregar: ${src})`
                         : caption.textContent;
                     caption.dataset.fallbackApplied = "1";
                 }
             };
 
-            img.addEventListener(
-                "error",
-                () => {
-                    brokenCount += 1;
-                    applyFallback();
+            img.addEventListener("error", () => {
+                const originalSrc = String(img.getAttribute("src") || "");
+                const currentSrc = String(img.currentSrc || "");
+                const hasSrcset = img.hasAttribute("srcset");
+
+                // If a responsive candidate fails (common when publishing to GitHub Pages
+                // and forgetting to upload `fotos/otimizadas/`), retry once using `src`.
+                if (!img.dataset.triedOriginal && hasSrcset && originalSrc && currentSrc && currentSrc !== originalSrc) {
+                    img.dataset.triedOriginal = "1";
+                    img.removeAttribute("srcset");
+                    img.removeAttribute("sizes");
+                    img.src = originalSrc;
                     showNotice();
-                },
-                { once: true }
-            );
+                    return;
+                }
+
+                applyFallback();
+                showNotice();
+            });
         });
 
         if (notice && hasWebp) {
