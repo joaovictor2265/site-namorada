@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nosso Bebê</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topbar">
+    <div class="wrap topbar__inner">
+        <a class="brand" href="index.html">Nosso Amor</a>
+
+        <nav class="nav" aria-label="Navegação principal">
+            <a href="index.html">Início</a>
+            <a href="album.html">Álbum</a>
+            <a href="historia.html">Nossa História</a>
+            <a href="bebe.html">Nosso Bebê</a>
+        </nav>
+    </div>
+</header>
+
+<main id="conteudo">
+    <section class="hero">
+        <div class="wrap hero__inner">
+            <p class="kicker">Nova fase</p>
+            <h1>Nosso Bebê</h1>
+            <p class="lead">Acompanhando cada semana com amor.</p>
+
+            <div class="card card--highlight">
+                <p id="gravidez" class="gravidez" data-gravidez-inicio="2025-12-24"></p>
+                <p id="gravidezSub" class="muted small">Atualiza automaticamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <div class="stats" aria-label="Detalhes da gravidez">
+                <div class="card stat">
+                    <p class="stat__label">Hoje</p>
+                    <p class="stat__value" id="gravidezHoje">-</p>
+                </div>
+
+                <div class="card stat">
+                    <p class="stat__label">Início</p>
+                    <p class="stat__value" id="gravidezInicio">-</p>
+                </div>
+
+                <div class="card stat">
+                    <p class="stat__label">Trimestre</p>
+                    <p class="stat__value" id="gravidezTrimestre">-</p>
+                </div>
+
+                <div class="card stat">
+                    <p class="stat__label">Parto (estimado)</p>
+                    <p class="stat__value" id="gravidezParto">-</p>
+                </div>
+
+                <div class="card stat">
+                    <p class="stat__label">Faltam</p>
+                    <p class="stat__value" id="gravidezFaltam">-</p>
+                </div>
+            </div>
+
+            <div class="card progress-card">
+                <h2 class="h2">Contagem regressiva</h2>
+                <div class="progress" id="gravidezProgresso" role="progressbar" aria-label="Progresso da gravidez" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress__bar" id="gravidezProgressoBar"></div>
+                </div>
+                <p class="muted small" id="gravidezProgressoTexto">-</p>
+                <p class="muted small">Estimativa baseada em 40 semanas e pode variar.</p>
+            </div>
+
+            <details class="card config">
+                <summary>Configurar datas</summary>
+                <div class="config__grid" id="gravidezConfig">
+                    <label class="field">
+                        <span>Início (AAAA-MM-DD)</span>
+                        <input type="date" id="inicioInput">
+                    </label>
+
+                    <label class="field">
+                        <span>Parto previsto (opcional)</span>
+                        <input type="date" id="partoInput">
+                    </label>
+
+                    <div class="config__actions">
+                        <button class="btn btn--ghost" type="button" id="configReset">Voltar ao padrão</button>
+                    </div>
+                </div>
+                <p class="muted small">As datas ficam salvas neste navegador.</p>
+            </details>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="wrap footer__inner">
+        <p>Feito com carinho.</p>
+    </div>
+</footer>
+
+<script src="script.js" defer></script>
+
+</body>
+
+</html>
